@@ -1,4 +1,4 @@
-package ba.sake.win32.namedpipe.echo;
+package ba.sake.win32.namedpipe.blocking.echo;
 
 import static org.junit.Assert.assertEquals;
 import java.util.concurrent.ExecutorService;

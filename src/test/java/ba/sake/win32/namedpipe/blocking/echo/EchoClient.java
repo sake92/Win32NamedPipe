@@ -1,8 +1,8 @@
-package ba.sake.win32.namedpipe.echo;
+package ba.sake.win32.namedpipe.blocking.echo;
 
 import java.io.*;
 import java.net.*;
-import ba.sake.win32.namedpipe.Win32NamedPipeClientSocket;
+import ba.sake.win32.namedpipe.blocking.Win32NamedPipeClientSocket;
 
 public class EchoClient {
 

@@ -1,4 +1,4 @@
-package ba.sake.win32.namedpipe;
+package ba.sake.win32.namedpipe.blocking;
 
 import java.io.IOException;
 import java.io.InputStream;
