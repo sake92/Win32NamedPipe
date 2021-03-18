@@ -1,0 +1,54 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	implementation group: 'net.java.dev.jna', name: 'jna-platform', version: '5.7.0'
+	
+    testImplementation 'junit:junit:4.12'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ba.sake'
+            artifactId = 'win32-namedpipe'
+            version = '0.2'
+
+            from components.java
+            
+            pom {
+                name = 'win32-namedpipe'
+                description = 'Win32 named pipe server-client'
+                url = 'https://sake.ba'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'sake92'
+                        name = 'Sakib Hadžiavdić'
+                        email = 'sakib@sake.ba'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://example.com/my-library.git'
+                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
+                    url = 'http://example.com/my-library/'
+                }
+            }
+        }
+    }
+}
