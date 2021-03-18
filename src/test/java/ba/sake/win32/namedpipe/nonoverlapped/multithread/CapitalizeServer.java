@@ -1,4 +1,4 @@
-package ba.sake.win32.namedpipe.blocking.multithread;
+package ba.sake.win32.namedpipe.nonoverlapped.multithread;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import ba.sake.win32.namedpipe.blocking.Win32NamedPipeServerSocket;
+import ba.sake.win32.namedpipe.nonoverlapped.Win32NamedPipeServerSocket;
 
 /**
  * When a client connects, a new thread is started to handle it. Receiving

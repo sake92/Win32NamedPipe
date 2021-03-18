@@ -1,4 +1,4 @@
-package ba.sake.win32.namedpipe.blocking;
+package ba.sake.win32.namedpipe.nonoverlapped;
 
 import java.io.IOException;
 import java.io.OutputStream;
