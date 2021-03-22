@@ -1,4 +1,4 @@
-package ba.sake.win32.namedpipe.nonoverlapped.echo;
+package ba.sake.win32.namedpipe.echo;
 
 import static org.junit.Assert.assertEquals;
 import java.util.concurrent.ExecutorService;
@@ -14,11 +14,11 @@ public class EchoTest {
     public void givenClient_whenServerEchosMessage_thenCorrect() {
         withServerAndClient(client -> {
             String resp1 = client.sendMessage("hello");
-            String resp2 = client.sendMessage("world");
+            String resp2 = client.sendMessage("wo rld");
             String resp3 = client.sendMessage("!");
             String resp4 = client.sendMessage("STOP");
             assertEquals("hello", resp1);
-            assertEquals("world", resp2);
+            assertEquals("wo rld", resp2);
             assertEquals("!", resp3);
             assertEquals("bye", resp4);
         });

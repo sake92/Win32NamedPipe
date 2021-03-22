@@ -22,7 +22,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'ba.sake'
             artifactId = 'win32-namedpipe'
-            version = '0.2'
+            version = '0.3'
 
             from components.java
             

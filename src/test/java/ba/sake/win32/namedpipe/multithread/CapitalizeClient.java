@@ -1,9 +1,9 @@
-package ba.sake.win32.namedpipe.nonoverlapped.multithread;
+package ba.sake.win32.namedpipe.multithread;
 
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-import ba.sake.win32.namedpipe.nonoverlapped.Win32NamedPipeClientSocket;
+import ba.sake.win32.namedpipe.Win32NamedPipeClientSocket;
 
 public class CapitalizeClient {
 

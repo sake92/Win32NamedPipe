@@ -1,11 +1,10 @@
-package ba.sake.win32.namedpipe.nonoverlapped;
+package ba.sake.win32.namedpipe;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import com.sun.jna.platform.win32.WinBase;
-import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.WinError;
 import com.sun.jna.platform.win32.WinNT;
 import com.sun.jna.platform.win32.WinNT.HANDLE;
@@ -18,7 +17,7 @@ public class Win32NamedPipeClientSocket extends Socket {
 
     private static final String PIPE_PREFIX = "\\\\.\\pipe\\";
     
-    private static final Kernel32 API = Kernel32.INSTANCE;
+    private static final Kernel32API API = Kernel32API.INSTANCE;
 
     private final String pipeName;
     private final HANDLE pipeHandle;
@@ -32,7 +31,8 @@ public class Win32NamedPipeClientSocket extends Socket {
                 WinNT.GENERIC_READ | WinNT.GENERIC_WRITE,
                 0, // no sharing
                 null, // default security attributes
-                WinNT.OPEN_EXISTING, 0, // default attributes
+                WinNT.OPEN_EXISTING,
+                WinNT.FILE_FLAG_OVERLAPPED, // default attributes
                 null
         );
         
