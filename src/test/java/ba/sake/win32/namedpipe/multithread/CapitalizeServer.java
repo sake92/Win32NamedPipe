@@ -30,7 +30,7 @@ public class CapitalizeServer {
 
     private static class Capitalizer implements Runnable {
 
-        private Socket socket;
+        private final Socket socket;
 
         Capitalizer(Socket socket) {
             this.socket = socket;
@@ -39,7 +39,7 @@ public class CapitalizeServer {
         @Override
         public void run() {
             System.out.println("Connected: " + socket);
-            try {
+            try (socket) {
                 Scanner in = new Scanner(socket.getInputStream());
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 while (in.hasNextLine()) {
@@ -47,12 +47,6 @@ public class CapitalizeServer {
                 }
             } catch (Exception e) {
                 System.out.println("Error:" + socket);
-            } finally {
-                try {
-                    socket.close(); // must close it here !
-                } catch (IOException e) {
-                }
-                System.out.println("Closed: " + socket);
             }
         }
     }
