@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,11 +19,11 @@ public class CapitalizeServer {
 
     @SuppressWarnings("resource")
     public static void main(String[] args) throws Exception {
-        try (ServerSocket listener = new Win32NamedPipeServerSocket("CapitalizePipeTest")) {
+        try (var serverSocket = new Win32NamedPipeServerSocket("CapitalizePipeTest")) {
             System.out.println("CapitalizeServer is running...");
-            ExecutorService pool = Executors.newFixedThreadPool(20);
+            var pool = Executors.newFixedThreadPool(20);
             while (true) {
-                Socket socket = listener.accept(); // wait for new client
+                var socket = serverSocket.accept(); // wait for new client
                 pool.execute(new Capitalizer(socket));
             }
         }
@@ -38,16 +39,18 @@ public class CapitalizeServer {
 
         @Override
         public void run() {
-            System.out.println("Connected: " + socket);
-            try (socket) {
-                Scanner in = new Scanner(socket.getInputStream());
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            System.out.println("Client connected: " + socket.hashCode());
+            try (socket;
+                    var in = new Scanner(socket.getInputStream());
+                    var out = new PrintWriter(socket.getOutputStream(), true);) {
+
                 while (in.hasNextLine()) {
                     out.println(in.nextLine().toUpperCase());
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("Error:" + socket);
             }
+            System.out.println("Client disconnected: " + socket.hashCode());
         }
     }
 }
