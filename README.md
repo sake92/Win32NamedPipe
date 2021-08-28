@@ -7,9 +7,7 @@
 If you want to read/write **simultaneously** to/from a named pipe (from different threads),  
 you **have to use Overlapped I/O** !
 
-https://docs.microsoft.com/en-us/previous-versions/ms810467(v=msdn.10)?redirectedfrom=MSDN#nonoverlapped-io
-
-Quoting the docs:
+Explanation from the [docs](https://docs.microsoft.com/en-us/previous-versions/ms810467(v=msdn.10)?redirectedfrom=MSDN#nonoverlapped-io) for "Nonoverlapped I/O":
 
 It is the responsibility of the application to serialize access to the port correctly.  
 If one thread is blocked waiting for its I/O operation to complete, 
